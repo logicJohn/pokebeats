@@ -1,5 +1,7 @@
 import requests
 import json
+from flask import Flask, jsonify
+app = Flask(__name__)
 
 pokemontypes = {
     "type1": None,
@@ -26,12 +28,8 @@ for n in response.json()['types']:
 f.write(json.dumps(pokemontypes, sort_keys=True, indent=4))
 f.close()
 
+@app.route('/')
+def index()
+    return jsonify({'spotifyuri': 'something'})
 
-url = 'https://www.w3schools.com/python/demopage.php'
-myobj = {'somekey': 'somevalue'}
-
-x = requests.post(url, json = myobj)
-#response = requests.post(url, json = pokemontypes)
-
-print(x.status_code)
-
+@app.run()

@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Client side routing fix on page refresh or direct browsing to non-root directory
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "main.html"), err => {
+  res.sendFile(path.join(__dirname, "main.html"), err => {
     if (err) {
       res.status(500).send(err);
     }
