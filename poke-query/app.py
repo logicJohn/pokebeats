@@ -13,8 +13,6 @@ print(response.status_code)
 print("Pokemon name: " + response.json()['forms'][0]['name'])
 
 f = open("pokedex-return.json", "w")
-#f.write(response.text)
-#print(json.dumps(response.json(), sort_keys=True, indent=4))
 f.write(json.dumps(response.json(), sort_keys=True, indent=4))
 f.close()
 
@@ -28,8 +26,16 @@ for n in response.json()['types']:
 f.write(json.dumps(pokemontypes, sort_keys=True, indent=4))
 f.close()
 
-@app.route('/')
-def index()
-    return jsonify({'spotifyuri': 'something'})
 
-@app.run()
+@app.route('/')
+def index():
+    return 'Web App with Python Flask!'
+
+@app.route('/<pokemonName>')
+def index2(pokemonName):
+    url = f"https://pokeapi.co/api/v2/pokemon/{pokemonName}"
+    response = requests.get(url)
+    return "hello"
+
+app.run(host='0.0.0.0', port=81)
+
