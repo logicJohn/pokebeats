@@ -1,3 +1,4 @@
+
 import requests
 import json
 from flask import Flask, jsonify
@@ -60,5 +61,5 @@ def index2(pokemonName):
 
     return pokeString
 
-app.run(host='0.0.0.0', port=8080)
+app.run(host='127.0.0.1', port=8080, debug=True)
 
