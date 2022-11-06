@@ -4,38 +4,16 @@ import json
 from flask import Flask, jsonify
 app = Flask(__name__)
 
-pokemontypes = {
-    "type1": None,
-    "type2": None
-}
-
-#response = requests.get("https://pokeapi.co/api/v2/pokemon/pikachu")
-#print(response.status_code)
-#print("Pokemon name: " + response.json()['forms'][0]['name'])
-
-#f = open("pokedex-return.json", "w")
-#f.write(json.dumps(response.json(), sort_keys=True, indent=4))
-#f.close()
-
-#f = open("pokemon-type.json", "w")
-#for n in response.json()['types']:
-#    print(n['type']['name'])
-#    if pokemontypes['type1'] == None:
-#        pokemontypes['type1']= n['type']['name']
-#    else:
-#        pokemontypes['type2'] = n['type']['name']
-#f.write(json.dumps(pokemontypes, sort_keys=True, indent=4))
-#f.close()
-
 
 @app.route('/')
 def index():
-    return 'Web App with Python Flask\n'
+    return 'Add a pokemon name to the end of the url\n'
 
 @app.route('/<pokemonName>')
 def index2(pokemonName):
 
     pokemontypes = {
+        "name" : None,
         "type1": None,
         "type2": None
     }
@@ -45,7 +23,7 @@ def index2(pokemonName):
     print(response.status_code)
     print("Pokemon name: " + response.json()['forms'][0]['name'])
 
-    pokeName = response.json()['forms'][0]['name']
+    pokemontypes["name"] = response.json()['forms'][0]['name']
 
     for n in response.json()['types']:
         print(n['type']['name'])
@@ -54,9 +32,7 @@ def index2(pokemonName):
         else:
             pokemontypes['type2'] = n['type']['name']
     
-    pokeString = f"Pokemon name is {pokeName}, type1 is {pokemontypes['type1']}, type2 is {pokemontypes['type2']} \n"
-
-    return pokeString
+    return pokemontypes
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)
