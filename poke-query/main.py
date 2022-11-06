@@ -47,19 +47,17 @@ def index2(pokemonName):
 
     pokeName = response.json()['forms'][0]['name']
 
-    f = open("pokemon-type.json", "w")
     for n in response.json()['types']:
         print(n['type']['name'])
         if pokemontypes['type1'] == None:
             pokemontypes['type1']= n['type']['name']
         else:
             pokemontypes['type2'] = n['type']['name']
-    f.write(json.dumps(pokemontypes, sort_keys=True, indent=4))
-    f.close()
-
+    
     pokeString = f"Pokemon name is {pokeName}, type1 is {pokemontypes['type1']}, type2 is {pokemontypes['type2']} \n"
 
     return pokeString
 
-app.run(host='127.0.0.1', port=8080, debug=True)
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)
 
